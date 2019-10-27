@@ -2,59 +2,19 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-import "./index.css";
-
-// // 方块
-// class Square extends React.Component {
-//   render() {
-//     return <button className="square">✈️{/* TODO */}</button>;
-//   }
-// }
-
-// // 棋盘
-// class Board extends React.Component {
-//   // 函数
-//   renderSquare(i) {
-//     return <Square />;
-//   }
-
-//   render() {
-//     const status = "Next player: X";
-
-//     return (
-//       <div>
-//         <div className="status">{status}</div>
-//         <div className="board-row">
-//           {this.renderSquare(0)}
-//           {this.renderSquare(1)}
-//           {this.renderSquare(2)}
-//         </div>
-//         <div className="board-row">
-//           {this.renderSquare(3)}
-//           {this.renderSquare(4)}
-//           {this.renderSquare(5)}
-//         </div>
-//         <div className="board-row">
-//           {this.renderSquare(6)}
-//           {this.renderSquare(7)}
-//           {this.renderSquare(8)}
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 
 // 游戏
 const Game = () => {
-  const [numOfAnimals, setNumOfAnimals] = useState(10);
+  const [numOfAnimals, setNumOfAnimals] = useState(100);
   const [whatThings, setWhatThings] = useState("🤡");
+  const [numEachLine, setNumEachLine] = useState(10);
   function getCats(n, what) {
     if (n > 999) {
       n = 1000;
     }
     var cats = [];
     for (var i = 0; i < n; i++) {
-      if (i !== 0 && i % 10 === 0) {
+      if (i !== 0 && i % numEachLine === 0) {
         cats.push(<br />);
       }
       cats.push(what);
@@ -69,6 +29,10 @@ const Game = () => {
 
   const handleThingsChange = e => {
     setWhatThings(e.target.value);
+  };
+
+  const handleNumEachLineChange = e => {
+    setNumEachLine(parseInt(e.target.value));
   };
 
   return (
@@ -104,6 +68,18 @@ const Game = () => {
           value={whatThings}
           onChange={handleThingsChange}
           //   type="number"
+          //   className={classes.textField}
+          InputLabelProps={{
+            shrink: true
+          }}
+          margin="normal"
+        />
+        <TextField
+          id="standard-number"
+          label="每行多少个？"
+          value={numEachLine}
+          onChange={handleNumEachLineChange}
+          type="number"
           //   className={classes.textField}
           InputLabelProps={{
             shrink: true
