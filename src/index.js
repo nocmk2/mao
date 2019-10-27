@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
-
+import EmojoAPI from "./apis/EmojoAPI";
 // 游戏
 const Game = () => {
   const [numOfAnimals, setNumOfAnimals] = useState(100);
-  const [whatThings, setWhatThings] = useState("🤡");
+  const [whatThings, setWhatThings] = useState("兔子");
   const [numEachLine, setNumEachLine] = useState(10);
   function getCats(n, what) {
     if (n > 999) {
@@ -15,7 +15,7 @@ const Game = () => {
     var cats = [];
     for (var i = 0; i < n; i++) {
       if (i !== 0 && i % numEachLine === 0) {
-        cats.push(<br />);
+        cats.push(<br key={i} />);
       }
       cats.push(what);
     }
@@ -43,7 +43,9 @@ const Game = () => {
         <ol>{/* TODO */}</ol>
       </div>
       <div>
-        <Paper>{getCats(numOfAnimals, whatThings)}</Paper>
+        <Paper>
+          {getCats(numOfAnimals, EmojoAPI.getEmojoByWords(whatThings))}
+        </Paper>
         <br />
         {/* <input
           type="number"
