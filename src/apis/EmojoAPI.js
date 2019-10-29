@@ -10,6 +10,18 @@ const EmojoAPI = {
     return d[words]
       ? d[words][Math.floor(Math.random() * d[words].length)]
       : "😒";
+  },
+  getEmojoNameBySearch: function(words) {
+    var ks = Object.keys(d);
+    for (var index in ks) {
+      if (words.includes(ks[index])) {
+        console.log(index, ks[index], words);
+        return ks[index];
+      }
+    }
+  },
+  exists: function(words) {
+    return d[words] ? true : false;
   }
 };
 // fetch("./data/things.json")

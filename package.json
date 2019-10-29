@@ -4,9 +4,14 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.5.1",
+    "@material-ui/icons": "^4.5.1",
+    "formik": "^2.0.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0"
+    "react-scripts": "3.2.0",
+    "react-speech": "^1.0.2",
+    "react-speech-recognition": "^2.0.4",
+    "styled-components": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
