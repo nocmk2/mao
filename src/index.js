@@ -1,40 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./app";
-// import Capsule from "./components/Capsule";
-import Button from "@material-ui/core/Button";
-// import Box from "@material-ui/core/Box";
-import Box from "./components/Box";
-import Demo from "./components/Demo";
+// import App from "./app";
+// import Button from "@material-ui/core/Button";
+import TodoList from "./components/TodoList";
 
-// const Big = () => {
-//   return (
-//     <>
-//       <Box
-//         // textAlign={{ xs: "right", md: "center" }}
-//         color="text.primary"
-//         bgcolor="secondary.main"
-//         m={0} // margin
-//         // p={0}
-//         clone
-//       >
-//         <Button>111</Button>
-//         {/* <Button>222</Button> */}
-//       </Box>
+const data = [
+  { id: 1, completed: true, text: "a plane", remained: 2399 },
+  { id: 2, completed: false, text: "a cat", remained: 333 },
+  { id: 3, completed: false, text: "a cat", remained: 7 },
+  {
+    id: 4,
+    completed: false,
+    text: "aaiillop  klls;llddddkj ",
+    remained: 333
+  },
+  { id: 5, completed: false, text: "a cat", remained: 333 },
+  { id: 6, completed: false, text: "a plane cat", remained: 333 },
+  { id: 7, completed: false, text: "a cat", remained: 9 }
+];
 
-//       <Box
-//         // textAlign={{ xs: "right", md: "center" }}
-//         color="text.primary"
-//         bgcolor="secondary.main"
-//         m={2} // margin
-//         clone
-//       >
-//         <Button>222</Button>
-//         {/* <Button>222</Button> */}
-//       </Box>
-//       <Demo></Demo>
-//     </>
-//   );
-// };
+const aaa = index => {
+  console.log(index);
+};
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <TodoList todos={data} onTodoClick={aaa}></TodoList>,
+  document.getElementById("root")
+);
