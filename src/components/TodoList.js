@@ -9,8 +9,8 @@ const TodoList = ({ todos, onTodoClick }) => {
         <Todo
           key={index}
           color={todo.remained < 10 ? "red" : "blue"}
-          {...todo}
-          onClick={() => onTodoClick(index)}
+          {...todo} // TODO: 为什么要...
+          onClick={() => onTodoClick(index)} // onTodoClick 在containers component VisibleTodoList中定义
         />
       ))}
     </>

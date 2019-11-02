@@ -50,9 +50,9 @@ const useStyles = makeStyles(theme => ({
 
 const Todo = props => {
   const classes = useStyles(props);
-  // const done = props.completed ? classes.done : classes.root;
 
   const chooseIconByText = text => {
+    // https://material-ui.com/zh/components/material-icons/
     if (text.includes("plane")) {
       return (
         <ListItemIcon className={classes.red}>
@@ -78,7 +78,7 @@ const Todo = props => {
   };
 
   return (
-    <ListItem className={classes.root}>
+    <ListItem className={classes.root} onClick={props.onClick}>
       {chooseIconByText(props.text)}
       <ListItemText primary={props.text} />
     </ListItem>
@@ -86,7 +86,7 @@ const Todo = props => {
 };
 
 Todo.propTypes = {
-  // onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
   completed: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired
 };
