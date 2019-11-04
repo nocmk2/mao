@@ -6,6 +6,21 @@ import EmojoAPI from "./apis/EmojoAPI";
 // import Say from "./components/Say";
 import PropTypes from "prop-types";
 import SpeechRecongnition from "react-speech-recognition";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const Index = () => {
+  useEffect(() => {
+    console.log("Index in");
+    return () => {
+      console.log("Index out");
+    };
+  }, []);
+  return <h2>Main</h2>;
+};
+
+const List = () => {
+  return <h2>List</h2>;
+};
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -26,7 +41,6 @@ const App = ({
   // var ai = setInterval(resetTranscript, 5000);
 
   useEffect(() => {
-    console.log("---------------------------jjhjj-");
     var num = transcript.replace(/[^0-9]/gi, "");
     if (parseInt(num)) {
       setNumOfAnimals(parseInt(num));
@@ -41,7 +55,7 @@ const App = ({
     if (transcript.length > 14 || transcript.includes("重")) {
       resetTranscript();
     }
-  });
+  }, [transcript, resetTranscript]);
 
   if (!browserSupportsSpeechRecognition) {
     console.log("not support1111111111");
@@ -68,7 +82,7 @@ const App = ({
   };
 
   const handleThingsChange = e => {
-    console.log("++++++++");
+    console.log("handleThingsChange");
     setWhatThings(e.target.value);
   };
 
@@ -131,6 +145,19 @@ const App = ({
         />
         <Paper>{transcript}</Paper>
       </div>
+
+      <Router>
+        <ul>
+          <li>
+            <Link to="/">首页</Link>
+          </li>
+          <li>
+            <Link to="/list/">列表</Link>
+          </li>
+        </ul>
+        <Route path="/" exact component={Index} />
+        <Route path="/list" component={List} />
+      </Router>
     </div>
   );
 };
