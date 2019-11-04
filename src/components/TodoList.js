@@ -9,7 +9,7 @@ const TodoList = ({ todos, onTodoClick }) => {
         <Todo
           key={index}
           color={todo.remained < 10 ? "red" : "blue"}
-          {...todo} // TODO: 为什么要...
+          {...todo}
           onClick={() => onTodoClick(index)} // onTodoClick 在containers component VisibleTodoList中定义
         />
       ))}
