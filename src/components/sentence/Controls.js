@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "@material-ui/core/Slider";
+import { ctx, UPDATE_PAPERS } from "./Wraper";
 
 const Controls = () => {
-  return <Slider value={30} aria-labelledby="continuous-slider" />;
+  const { hhh, dispatch } = useContext(ctx);
+
+  const handleChange = (event, newValue) => {
+    dispatch({ type: UPDATE_PAPERS, n: newValue });
+  };
+
+  return (
+    <Slider
+      defaultValue={hhh}
+      onChange={handleChange}
+      aria-labelledby="continuous-slider"
+    />
+  );
 };
 
 export default Controls;
