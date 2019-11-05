@@ -5,14 +5,15 @@ import { render } from "react-dom";
 // import rootReducer from "./reducers";
 // import App from "./components/App";
 import App from "./app";
-
 // const store = createStore(rootReducer);
+import Sentence from "./components/sentence/Sentence";
 
 render(
   // <TodoList todos={data} onTodoClick={aaa}></TodoList>,
   // <Provider store={store}>
   //   <App />
   // </Provider>,
-  <App />,
+  // <App />,
+  <Sentence></Sentence>,
   document.getElementById("root")
 );

@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {
+  useState,
+  useEffect,
+  createContext,
+  useContext,
+  useReducer
+} from "react";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import EmojoAPI from "./apis/EmojoAPI";
@@ -7,6 +13,8 @@ import EmojoAPI from "./apis/EmojoAPI";
 import PropTypes from "prop-types";
 import SpeechRecongnition from "react-speech-recognition";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+const CountContext = createContext();
 
 const Index = () => {
   useEffect(() => {
@@ -19,14 +27,8 @@ const Index = () => {
 };
 
 const List = () => {
-  return <h2>List</h2>;
-};
-
-const propTypes = {
-  // Props injected by SpeechRecognition
-  transcript: PropTypes.string,
-  resetTranscript: PropTypes.func,
-  browserSupportsSpeechRecognition: PropTypes.bool
+  let c = useContext(CountContext);
+  return <h2>List{c}</h2>;
 };
 
 // 游戏
@@ -36,7 +38,7 @@ const App = ({
   browserSupportsSpeechRecognition
 }) => {
   const [numOfAnimals, setNumOfAnimals] = useState(100);
-  const [whatThings, setWhatThings] = useState("兔子");
+  const [whatThings, setWhatThings] = useState("");
   const [numEachLine, setNumEachLine] = useState(10);
   // var ai = setInterval(resetTranscript, 5000);
 
@@ -61,6 +63,12 @@ const App = ({
     console.log("not support1111111111");
     return null;
   }
+  // const propTypes = {
+  //   // Props injected by SpeechRecognition
+  //   transcript: PropTypes.string,
+  //   resetTranscript: PropTypes.func,
+  //   browserSupportsSpeechRecognition: PropTypes.bool
+  // };
 
   function getCats(n, what) {
     if (n > 999) {
@@ -89,6 +97,39 @@ const App = ({
   const handleNumEachLineChange = e => {
     setNumEachLine(parseInt(e.target.value));
   };
+
+  function ReducerDemo() {
+    const [count, dispatch] = useReducer((state, action) => {
+      switch (action) {
+        case "add":
+          return state + 1;
+        case "sub":
+          return state - 1;
+        default:
+          return state;
+      }
+    }, 0);
+
+    return (
+      <div>
+        <h2>{count}</h2>
+        <button
+          onClick={() => {
+            dispatch("add");
+          }}
+        >
+          Incr
+        </button>
+        <button
+          onClick={() => {
+            dispatch("sub");
+          }}
+        >
+          Decr
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="game">
@@ -158,11 +199,15 @@ const App = ({
         <Route path="/" exact component={Index} />
         <Route path="/list" component={List} />
       </Router>
+      <CountContext.Provider value={numOfAnimals}>
+        <List></List>
+      </CountContext.Provider>
+      <ReducerDemo></ReducerDemo>
     </div>
   );
 };
 
-App.propTypes = propTypes;
+// App.propTypes = propTypes;
 const options = {
   autoStart: true,
   recognition: "zh-CN"
