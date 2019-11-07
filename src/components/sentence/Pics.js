@@ -17,22 +17,22 @@ const Dest = () => {
 };
 
 const Pics = () => {
-  const { hhh, mmm, xxx } = useContext(ctx);
+  const { papers, greet, name } = useContext(ctx);
 
   useEffect(() => {
-    document.title = `value ${hhh}`;
-  }, [hhh]);
+    document.title = `value ${papers}`;
+  }, [papers]);
 
   let a = [];
-  for (var i = 0; i < hhh; i++) {
+  for (var i = 0; i < papers; i++) {
     a.push(
       <Paper key={i}>
-        {mmm} {xxx} {i}
+        {greet} {name} {i}
       </Paper>
     );
   }
 
-  return <>{hhh !== 11 ? a : <Dest />}</>;
+  return <>{papers !== 11 ? a : <Dest />}</>;
 };
 
 export default Pics;
